@@ -3,7 +3,7 @@
 #' 
 #' rcheology is a data package providing two data frames: 
 #' 
-#' * [rcheology] lists objects in all versions of R from 2.0.0 onwards.
+#' * [rcheology] lists objects in all versions of R from 1.0.1 onwards.
 #' * [Rversions] lists R versions and their release dates.
 #' 
 #' The version of the rcheology package reflects the latest R version to be included in the data, 
@@ -17,14 +17,24 @@
 #' all base packages are then listed. (Note that recommended packages, like `nnet` or `MASS`,
 #' are not installed.) For functions, the [formals()] of the function are recorded.
 #' 
-#' Versions 3.0.1 and up are installed from the 
-#' [CRAN apt repositories for Ubuntu Trusty Tahr](https://cran.r-project.org/bin/linux/ubuntu/trusty/).
-#'  Version 3.5.0 and up use a 
+#' * Versions 3.0.1 and up are installed from the 
+#' [CRAN apt repositories for Ubuntu Trusty Tahr](https://cran.r-project.org/bin/linux/ubuntu/trusty/). Version 3.5.0 and up use a 
 #' [special repository](https://cran.r-project.org/bin/linux/ubuntu/trusty-cran35/).
 #' 
-#' Versions 2.5.1 to 3.0.0 are built from source on [Ubuntu Lucid Lynx](https://hub.docker.com/r/yamamuteki/ubuntu-lucid-i386/).
+#' * Versions 2.5.1 to 3.0.0 are built from source on [Ubuntu Lucid Lynx](https://hub.docker.com/r/yamamuteki/ubuntu-lucid-i386/).
 #' 
-#' Versions 2.0.0 to 2.4.1 are built from source on [Debian Sarge](https://hub.docker.com/r/debian/eol/).
+#' * Versions 1.2.3 to 2.4.1 are built from source on [Debian Sarge](https://hub.docker.com/r/debian/eol/).
+#' 
+#' * Versions 1.0.1 to 1.2.2, and versions 1.7.0 and 1.7.1, are built from source on [Debian Woody](https://hub.docker.com/r/debian/eol/).
+#' 
+#' @section Limitations:
+#' 
+#' * Functions not built on the relevant platform - e.g. Windows functions - are not included.
+#' * Because data is collected using the original R version, it is subject to changes in the way
+#'   R works. For example, before 2.5.0, [args()] didn't work on `Primitive` functions, so
+#'   those functions have no value in the `args` column.
+#' * I have failed to build tcltk on R versions 1.0.1-1.4.1 and 1.7.0/1, so there's no
+#'   tcltk data for these versions. If you can help, get in touch.
 #' 
 #' @docType package
 #' @name rcheology-package
@@ -33,15 +43,18 @@ NULL
 #' Data on objects from current and previous versions of R
 #' 
 #' A data frame with every function (and other object) in versions
-#' of R from 2.0.0 onwards. Variables are:
-#' 
+#' of R from 1.0.1 onwards. Variables are:
+
+#' * `package`: package the object comes from
 #' * `name`: name of the object
+#' * `Rversion`: version of R as major.minor.patch
 #' * `type`: Result of calling [typeof()] on the object
 #' * `class`: [class()] of the object, separated by slashes if there are multiple classes.
+#' * `exported`: `TRUE` if the object name was found in [getNamespaceExports()]. True for 
+#'    anything in the "base" package. `NA` if the package does not have a namespace 
+#'    (e.g. "datasets" in early versions).
 #' * `generic`: `TRUE` if the object is an (S4) generic according to [methods::isGeneric()]
 #' * `args`: the arguments of the function, or NA for non-functions
-#' * `package`: package the object comes from
-#' * `Rversion`: version of R as major.minor.patch
 #' 
 #' @name rcheology 
 NULL
@@ -54,8 +67,7 @@ NULL
 #' * `Rversion`: version of R as major.minor.patch
 #' * `date`: date of release
 #' 
-#' This goes back to 0.x releases. Some version 1's are "recommended";
-#' I don't know what these are. For 2.15.1-w, see 
+#' This goes back to 0.x releases. For 2.15.1-w, see 
 #' [here](https://cran.r-project.org/src/base/R-2/README-2.15.1-w).
 #' 
 #' @name Rversions 
