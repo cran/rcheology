@@ -1,10 +1,10 @@
-27a67a2c5f75f035df75cdcc35955308 *DESCRIPTION
+5524e00fce5766fb64f62462ad91234a *DESCRIPTION
 58e25f686986e2dc96c8feed51b1b89d *NAMESPACE
-f8bd5b2c333781fb3c794c4a915a8baf *NEWS.md
+514cf675a16547d29f5013c7bdea6d84 *NEWS.md
 8fc3db2472f14c8b91bde764b40b5270 *R/rcheology.R
-2985b4b948c0d793b8e3375275caf229 *README.md
+3065299294fd0525da6bf984e0ba6b47 *README.md
 59e398232fa9cee711cd2949a571bc27 *data/Rversions.rda
-4834d416d64e2de81ee3517b6174191b *data/rcheology.rda
+461a004d6d0ddf58f488d506d191735f *data/rcheology.rda
 c796f20314baa3c7a5afa5af610e5c87 *man/Rversions.Rd
 20187b75d7b127c2ee9395e2e866c26e *man/figures/README-unnamed-chunk-3-1.png
 350ce73f8daa97ad685afc754cd3c9ff *man/figures/README-unnamed-chunk-4-1.png
