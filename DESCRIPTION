@@ -1,5 +1,5 @@
 Package: rcheology
-Version: 3.6.2.0
+Version: 3.6.3.0
 Title: Data on Base Packages for Current and Previous Versions of R
 Description: Provides a dataset of functions in all base packages of R versions 1.0.1 onwards.
 Authors@R: person("David", "Hugh-Jones", , "davidhughjones@gmail.com", c("aut", "cre"))
@@ -10,10 +10,10 @@ Depends: R(>= 2.10)
 Encoding: UTF-8
 LazyData: true
 ByteCompile: true
-RoxygenNote: 6.1.1
+RoxygenNote: 7.0.2
 NeedsCompilation: no
-Packaged: 2019-12-14 18:57:58 UTC; david
+Packaged: 2020-03-01 16:24:03 UTC; david
 Author: David Hugh-Jones [aut, cre]
 Maintainer: David Hugh-Jones <davidhughjones@gmail.com>
 Repository: CRAN
-Date/Publication: 2019-12-14 19:10:03 UTC
+Date/Publication: 2020-03-01 17:10:02 UTC
