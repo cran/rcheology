@@ -12,9 +12,9 @@ status](https://www.r-pkg.org/badges/version/rcheology)](https://cran.r-project.
 downloads](https://cranlogs.r-pkg.org/badges/rcheology)](https://cran.r-project.org/package=rcheology)
 
 A data package which lists every command in base R packages since R
-version 0.62.3.
+version 0.50.
 
-The latest R version covered is 4.3.1.
+The latest R version covered is 4.3.2.
 
 You can view the data online in a [Shiny
 app](https://hughjonesd.shinyapps.io/rcheology/).
@@ -58,20 +58,27 @@ library(rcheology)
 data("rcheology")
 
 rcheology[rcheology$name == "kmeans" & rcheology$Rversion %in% c("1.0.1", "1.9.0", "2.1.0", "3.0.2", "3.2.0", "4.0.2"), ]
-#>        package   name Rversion    type exported    class generic
-#> 322049     mva kmeans    1.0.1 closure     TRUE     <NA>   FALSE
-#> 370732   stats kmeans    1.9.0 closure     TRUE function   FALSE
-#> 370736   stats kmeans    2.1.0 closure     TRUE function   FALSE
-#> 370776   stats kmeans    3.0.2 closure     TRUE function   FALSE
-#> 370782   stats kmeans    3.2.0 closure     TRUE function   FALSE
-#> 370807   stats kmeans    4.0.2 closure     TRUE function   FALSE
+#>        package   name Rversion priority    type exported hidden    class
+#> 329565     mva kmeans    1.0.1     <NA> closure     TRUE  FALSE     <NA>
+#> 378737   stats kmeans    1.9.0     base closure     TRUE  FALSE function
+#> 378741   stats kmeans    2.1.0     base closure     TRUE  FALSE function
+#> 378781   stats kmeans    3.0.2     base closure     TRUE  FALSE function
+#> 378787   stats kmeans    3.2.0     base closure     TRUE  FALSE function
+#> 378812   stats kmeans    4.0.2     base closure     TRUE  FALSE function
+#>        S4generic
+#> 329565     FALSE
+#> 378737     FALSE
+#> 378741     FALSE
+#> 378781     FALSE
+#> 378787     FALSE
+#> 378812     FALSE
 #>                                                                                                                              args
-#> 322049                                                                                                (x, centers, iter.max = 10)
-#> 370732                                                                                                (x, centers, iter.max = 10)
-#> 370736                  (x, centers, iter.max = 10, nstart = 1, algorithm = c("Hartigan-Wong",     "Lloyd", "Forgy", "MacQueen"))
-#> 370776   (x, centers, iter.max = 10, nstart = 1, algorithm = c("Hartigan-Wong",     "Lloyd", "Forgy", "MacQueen"), trace = FALSE)
-#> 370782 (x, centers, iter.max = 10L, nstart = 1L, algorithm = c("Hartigan-Wong",     "Lloyd", "Forgy", "MacQueen"), trace = FALSE)
-#> 370807 (x, centers, iter.max = 10L, nstart = 1L, algorithm = c("Hartigan-Wong",     "Lloyd", "Forgy", "MacQueen"), trace = FALSE)
+#> 329565                                                                                                (x, centers, iter.max = 10)
+#> 378737                                                                                                (x, centers, iter.max = 10)
+#> 378741                  (x, centers, iter.max = 10, nstart = 1, algorithm = c("Hartigan-Wong",     "Lloyd", "Forgy", "MacQueen"))
+#> 378781   (x, centers, iter.max = 10, nstart = 1, algorithm = c("Hartigan-Wong",     "Lloyd", "Forgy", "MacQueen"), trace = FALSE)
+#> 378787 (x, centers, iter.max = 10L, nstart = 1L, algorithm = c("Hartigan-Wong",     "Lloyd", "Forgy", "MacQueen"), trace = FALSE)
+#> 378812 (x, centers, iter.max = 10L, nstart = 1L, algorithm = c("Hartigan-Wong",     "Lloyd", "Forgy", "MacQueen"), trace = FALSE)
 ```
 
 Latest changes:
@@ -90,9 +97,20 @@ r_penult_obj <- rcheology %>% dplyr::filter(Rversion == r_penultimate)
 r_introduced <- anti_join(r_latest_obj, r_penult_obj, by = c("package", "name"))
 
 r_introduced
-#> # A tibble: 0 × 8
-#> # ℹ 8 variables: package <chr>, name <chr>, Rversion <chr>, type <chr>,
-#> #   exported <lgl>, class <chr>, generic <lgl>, args <chr>
+#> # A tibble: 30 × 10
+#>    package name    Rversion priority type  exported hidden class S4generic args 
+#>    <chr>   <chr>   <chr>    <chr>    <chr> <lgl>    <lgl>  <chr> <lgl>     <chr>
+#>  1 Matrix  .M2C    4.3.2    recomme… clos… TRUE     TRUE   func… FALSE     "(fr…
+#>  2 Matrix  .M2R    4.3.2    recomme… clos… TRUE     TRUE   func… FALSE     "(fr…
+#>  3 Matrix  .M2T    4.3.2    recomme… clos… TRUE     TRUE   func… FALSE     "(fr…
+#>  4 Matrix  .M2gen  4.3.2    recomme… clos… TRUE     TRUE   func… FALSE     "(fr…
+#>  5 Matrix  .M2kind 4.3.2    recomme… clos… TRUE     TRUE   func… FALSE     "(fr…
+#>  6 Matrix  .M2m    4.3.2    recomme… clos… TRUE     TRUE   func… FALSE     "(fr…
+#>  7 Matrix  .M2pac… 4.3.2    recomme… clos… TRUE     TRUE   func… FALSE     "(fr…
+#>  8 Matrix  .M2unp… 4.3.2    recomme… clos… TRUE     TRUE   func… FALSE     "(fr…
+#>  9 Matrix  .M2v    4.3.2    recomme… clos… TRUE     TRUE   func… FALSE     "(fr…
+#> 10 Matrix  .__C__… 4.3.2    recomme… S4    TRUE     TRUE   clas… FALSE      <NA>
+#> # ℹ 20 more rows
 ```
 
 Base functions over time:
@@ -108,7 +126,18 @@ rvs <- rcheology$Rversion     %>%
       as.character()
 
 major_rvs <- grep(".0$", rvs, value = TRUE)
+major_rvs <- gsub("0.50", "0.50-a1", major_rvs)
 major_rv_dates <- Rversions$date[Rversions$Rversion %in% major_rvs]
+major_rv_dates
+#>  [1] "1997-07-22" "1997-12-22" "1998-11-14" "1999-04-08" "1999-08-28"
+#>  [6] "1999-11-22" "2000-02-07" "2000-02-29" "2000-06-15" "2000-12-15"
+#> [11] "2001-06-22" "2001-12-19" "2002-04-29" "2002-10-01" "2003-04-16"
+#> [16] "2003-10-08" "2004-04-12" "2004-10-04" "2005-04-19" "2005-10-06"
+#> [21] "2006-04-24" "2006-10-03" "2007-04-24" "2007-10-03" "2008-04-22"
+#> [26] "2008-10-20" "2009-04-17" "2009-10-26" "2010-04-22" "2010-10-15"
+#> [31] "2011-04-13" "2011-10-31" "2012-03-30" "2013-04-03" "2014-04-10"
+#> [36] "2015-04-16" "2016-05-03" "2017-04-21" "2018-04-23" "2019-04-26"
+#> [41] "2020-04-24" "2021-05-18" "2022-04-22" "2023-04-21"
 major_rvs <- gsub("\\.0$", "", major_rvs)
 
 rch_dates <- rcheology %>% left_join(Rversions, by = "Rversion")
@@ -119,6 +148,7 @@ ggplot(rch_dates, aes(date, group = package, fill = package), colour = NA) +
       scale_x_date(breaks  = major_rv_dates, labels = major_rvs) + 
       xlab("Version") + ylab("Function count") + 
       theme(legend.position = "top")
+#> Warning: Removed 786 rows containing non-finite values (`stat_count()`).
 ```
 
 <img src="man/figures/README-unnamed-chunk-6-1.png" width="100%" />
@@ -135,6 +165,7 @@ ggplot(rch_dates, aes(date, fill = "orange")) +
       xlab("Version") + ylab("Function count") + 
       facet_wrap(~package, scales = "free_y", ncol = 2) +
       theme(legend.position = "none") 
+#> Warning: Removed 786 rows containing non-finite values (`stat_count()`).
 ```
 
 <img src="man/figures/README-unnamed-chunk-7-1.png" width="100%" height="1000px" />

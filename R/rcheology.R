@@ -3,7 +3,7 @@
 #' 
 #' rcheology is a data package providing two data frames: 
 #' 
-#' * [rcheology] lists objects in all versions of R from 0.62.3 onwards.
+#' * [rcheology] lists objects in versions of R from 0.50 onwards.
 #' * [Rversions] lists R versions and their release dates. NB: For a more complete 
 #'   and "canonical" solution, see the 
 #'   [rversions](https://cran.r-project.org/package=rversions) package.
@@ -18,11 +18,17 @@
 #' @section Limitations:
 #' 
 #' * Functions not built on the relevant platform - e.g. Windows functions - are not included.
-#' * Because data is collected using the original R version, it is subject to changes in the way
-#'   R works. For example, before 2.5.0, [args()] didn't work on `Primitive` functions, so
-#'   those functions have no value in the `args` column.
-#' * I have failed to build tcltk on R versions 1.0.1-1.4.1 and 1.7.0/1, so there's no
-#'   tcltk data for these versions. If you can help, get in touch.
+#' * R 0.60 data is not yet included.
+#' * Functions in package tcltk are not yet included before R 2.0.0.
+#' 
+#' @section Historical quirks:
+#' 
+#' * In 2.9.0, package Matrix was mistakenly given priority `"Recommended"` not 
+#'   `"recommended"` in the output of [installed.packages()].
+#' * In 2.5.0, package rcompgen was given priority `NA`. The NEWS file records
+#'   it as a recommended package.
+#'   
+#' Both these errors have been corrected in the rcheology data.
 #' 
 #' @docType package
 #' @name rcheology-package
@@ -41,8 +47,14 @@ NULL
 #' * `exported`: `TRUE` if the object name was found in [getNamespaceExports()]. True for 
 #'    anything in the "base" package. `NA` if the package does not have a namespace 
 #'    (e.g. "datasets" in early versions).
-#' * `generic`: `TRUE` if the object is an S4 generic according to 
-#'   [`methods::isGeneric()`][methods::GenericFunctions]
+#' * `hidden`: `TRUE` if the object name starts with `"."`. These objects
+#'   are not reported by [ls()].
+#' * `S4generic`: `TRUE` if the object is an S4 generic according to 
+#'   [`methods::isGeneric()`][methods::GenericFunctions]. Note that in earlier
+#'   versions of rcheology, this column was called `generic`.
+#' * `priority`: `"base"` for base packages, `"recommended"` for recommended
+#'   packages. `NA` for earlier versions of R (pre 1.6.0) when the priority 
+#'   concept did not exist.
 #' * `args`: the arguments of the function, or NA for non-functions
 #' 
 #' @name rcheology 

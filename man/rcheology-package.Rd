@@ -9,7 +9,7 @@ rcheology is a data package providing two data frames:
 }
 \details{
 \itemize{
-\item \link{rcheology} lists objects in all versions of R from 0.62.3 onwards.
+\item \link{rcheology} lists objects in versions of R from 0.50 onwards.
 \item \link{Rversions} lists R versions and their release dates. NB: For a more complete
 and "canonical" solution, see the
 \href{https://cran.r-project.org/package=rversions}{rversions} package.
@@ -39,11 +39,20 @@ The \code{Rversions} data frame lists versions of R and release dates.
 
 \itemize{
 \item Functions not built on the relevant platform - e.g. Windows functions - are not included.
-\item Because data is collected using the original R version, it is subject to changes in the way
-R works. For example, before 2.5.0, \code{\link[=args]{args()}} didn't work on \code{Primitive} functions, so
-those functions have no value in the \code{args} column.
-\item I have failed to build tcltk on R versions 1.0.1-1.4.1 and 1.7.0/1, so there's no
-tcltk data for these versions. If you can help, get in touch.
+\item R 0.60 data is not yet included.
+\item Functions in package tcltk are not yet included before R 2.0.0.
 }
+}
+
+\section{Historical quirks}{
+
+\itemize{
+\item In 2.9.0, package Matrix was mistakenly given priority \code{"Recommended"} not
+\code{"recommended"} in the output of \code{\link[=installed.packages]{installed.packages()}}.
+\item In 2.5.0, package rcompgen was given priority \code{NA}. The NEWS file records
+it as a recommended package.
+}
+
+Both these errors have been corrected in the rcheology data.
 }
 
