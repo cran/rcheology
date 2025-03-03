@@ -1,5 +1,5 @@
 Package: rcheology
-Version: 4.4.2.0
+Version: 4.4.3.0
 Title: Data on Base and Recommended Packages for Current and Previous
         Versions of R
 Description: Provides a dataset of functions in all base and recommended packages of R versions 0.50 onwards.
@@ -7,7 +7,7 @@ Authors@R: person("David", "Hugh-Jones", , "davidhughjones@gmail.com", c("aut", 
 License: CC0
 URL: https://github.com/hughjonesd/rcheology
 BugReports: https://github.com/hughjonesd/rcheology/issues
-Depends: R(>= 2.10)
+Depends: R (>= 3.5)
 Encoding: UTF-8
 LazyData: true
 ByteCompile: true
@@ -15,8 +15,8 @@ RoxygenNote: 7.3.2
 Suggests: testthat (>= 3.0.0)
 Config/testthat/edition: 3
 NeedsCompilation: no
-Packaged: 2024-11-11 12:29:21 UTC; davidhugh-jones
+Packaged: 2025-03-03 10:25:34 UTC; davidhugh-jones
 Author: David Hugh-Jones [aut, cre]
 Maintainer: David Hugh-Jones <davidhughjones@gmail.com>
 Repository: CRAN
-Date/Publication: 2024-11-11 12:50:05 UTC
+Date/Publication: 2025-03-03 10:40:02 UTC
